@@ -166,6 +166,7 @@
 
       el.setAttribute('aria-role', 'progressbar')
       self.lines(el, self.opts)
+      self.label(el, self.opts)
 
       if (!useCssAnimations) {
         // No CSS animation support, use setTimeout() instead
@@ -196,7 +197,18 @@
       }
       return this
     },
-
+    
+    label: function(el, o) {
+        lab = css(createEl(), {
+            position: 'absolute',
+            bottom: 1+~(o.radius/2.5) + 'px',
+            left: 1+~(o.radius/2.5) + 'px',
+            fontSize: (o.radius+2) + 'px'
+        })
+        lab.innerHTML=o.radius;
+        ins(el,lab);
+    },
+    
     lines: function(el, o) {
       var i = 0
         , seg
