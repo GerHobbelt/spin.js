@@ -201,8 +201,13 @@
     label: function(el, o) {
         lab = css(createEl(), {
             position: 'absolute',
-            bottom: 1+~(o.radius/2.5) + 'px',
-            left: 1+~(o.radius/2.5) + 'px',
+            height: 2*o.radius + 'px',
+            width: 2*o.radius + 'px',
+            left: -1*o.radius + 'px',
+            top: -1*o.radius + 'px',
+            textAlign: 'center',
+            margin: 0,
+            lineHeight: 2*o.radius + 'px',
             fontSize: (o.radius+2) + 'px'
         })
         lab.innerHTML=o.radius;
