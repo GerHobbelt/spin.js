@@ -122,6 +122,7 @@
     length: 7,            // The length of each line
     width: 5,             // The line thickness
     radius: 10,           // The radius of the inner circle
+    label: '',            // The label to display inside the spinner
     rotate: 0,            // Rotation offset
     corners: 1,           // Roundness (0..1)
     color: '#000',        // #rgb or #rrggbb
@@ -197,7 +198,7 @@
       }
       return this
     },
-    
+
     label: function(el, o) {
         lab = css(createEl(), {
             position: 'absolute',
@@ -210,10 +211,10 @@
             lineHeight: 2*o.radius + 'px',
             fontSize: (o.radius+2) + 'px'
         })
-        lab.innerHTML=o.radius;
+        lab.innerHTML=o.label;
         ins(el,lab);
     },
-    
+
     lines: function(el, o) {
       var i = 0
         , seg
