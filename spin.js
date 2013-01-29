@@ -159,8 +159,8 @@
         tp = pos(target)
         ep = pos(el)
         css(el, {
-          left: (o.left == 'auto' ? '50%' : parseInt(o.left, 10) + mid) + 'px',
-          top: (o.top == 'auto' ? '50%' : parseInt(o.top, 10) + mid)  + 'px'
+          left: o.left == 'auto' ? '50%' : (parseInt(o.left, 10) + mid + 'px'),
+          top: o.top == 'auto' ? '50%' : (parseInt(o.top, 10) + mid + 'px')
         })
       }
 
