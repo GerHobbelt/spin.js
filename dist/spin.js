@@ -122,6 +122,7 @@
     length: 7,            // The length of each line
     width: 5,             // The line thickness
     radius: 10,           // The radius of the inner circle
+    label: '',            // The label to display inside the spinner
     rotate: 0,            // Rotation offset
     corners: 1,           // Roundness (0..1)
     color: '#000',        // #rgb or #rrggbb
@@ -159,13 +160,14 @@
         tp = pos(target)
         ep = pos(el)
         css(el, {
-          left: (o.left == 'auto' ? tp.x-ep.x + (target.offsetWidth >> 1) : parseInt(o.left, 10) + mid) + 'px',
-          top: (o.top == 'auto' ? tp.y-ep.y + (target.offsetHeight >> 1) : parseInt(o.top, 10) + mid)  + 'px'
+          left: o.left == 'auto' ? '50%' : (parseInt(o.left, 10) + mid + 'px'),
+          top: o.top == 'auto' ? '50%' : (parseInt(o.top, 10) + mid + 'px')
         })
       }
 
       el.setAttribute('aria-role', 'progressbar')
       self.lines(el, self.opts)
+      self.label(el, self.opts)
 
       if (!useCssAnimations) {
         // No CSS animation support, use setTimeout() instead
@@ -195,6 +197,22 @@
         this.el = undefined
       }
       return this
+    },
+
+    label: function(el, o) {
+        lab = css(createEl(), {
+            position: 'absolute',
+            height: 2*o.radius + 'px',
+            width: 2*o.radius + 'px',
+            left: -1*o.radius + 'px',
+            top: -1*o.radius + 'px',
+            textAlign: 'center',
+            margin: 0,
+            lineHeight: 2*o.radius + 'px',
+            fontSize: (o.radius+2) + 'px'
+        })
+        lab.innerHTML=o.label;
+        ins(el,lab);
     },
 
     lines: function(el, o) {
