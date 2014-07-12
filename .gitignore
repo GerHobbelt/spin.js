@@ -1,3 +1,9 @@
 .DS_Store
 *~
 *.bak
+
+.grunt
+node_modules
+site/spin.js
+site/spin.min.js
+site/jquery.spin.js
