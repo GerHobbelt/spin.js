@@ -231,19 +231,19 @@
     },
 
     label: function(el, o) {
-        lab = css(createEl(), {
-            position: 'absolute',
-            height: 2*o.radius + 'px',
-            width: 2*o.radius + 'px',
-            left: -1*o.radius + 'px',
-            top: -1*o.radius + 'px',
-            textAlign: 'center',
-            margin: 0,
-            lineHeight: 2*o.radius + 'px',
-            fontSize: (o.radius+2) + 'px'
-        })
-        lab.innerHTML=o.label;
-        ins(el,lab);
+      var lab = css(createEl(), {
+          position: 'absolute',
+          height: 2 * o.radius + 'px',
+          width: 2 * o.radius + 'px',
+          left: -1 * o.radius + 'px',
+          top: -1 * o.radius + 'px',
+          textAlign: 'center',
+          margin: 0,
+          lineHeight: 2 * o.radius + 'px',
+          fontSize: (o.radius + 2) + 'px'
+      })
+      lab.innerHTML = o.label;
+      ins(el, lab);
     },
 
     /**

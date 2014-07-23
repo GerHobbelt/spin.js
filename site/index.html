@@ -47,6 +47,7 @@
     <br>
     <label>Shadow:</label><input type="checkbox" name="shadow"><br>
     <label>Hwaccel:</label><input type="checkbox" name="hwaccel"><br>
+    <label>Label:</label><input type="text" name="label" value=""><br>
   </form>
 
   <div class="share">
@@ -80,16 +81,20 @@ var opts = {
   length: <span id="opt-length" class="lit">7</span>, // The length of each line
   width: <span id="opt-width" class="lit">5</span>, // The line thickness
   radius: <span id="opt-radius" class="lit">10</span>, // The radius of the inner circle
+  label: <span id="opt-label" class="lit">''</span>,            // The label to display inside the spinner
   corners: <span id="opt-corners" class="lit">1</span>, // Corner roundness (0..1)
   rotate: <span id="opt-rotate" class="lit">0</span>, // The rotation offset
   direction: <span id="opt-rotate" class="lit">1</span>, // 1: clockwise, -1: counterclockwise
   color: '#000', // #rgb or #rrggbb or array of colors
   speed: <span id="opt-speed" class="lit">1</span>, // Rounds per second
   trail: <span id="opt-trail" class="lit">100</span>, // Afterglow percentage
+  opacity: <span id="opt-opacity" class="lit">1/4</span>,         // Opacity of the lines
   shadow: <span id="opt-shadow" class="kwd">true</span>, // Whether to render a shadow
   hwaccel: <span id="opt-hwaccel" class="kwd">false</span>, // Whether to use hardware acceleration
+  fps: 20,              // Frames per second when using setTimeout()
   className: 'spinner', // The CSS class to assign to the spinner
   zIndex: 2e9, // The z-index (defaults to 2000000000)
+  position: 'absolute'  // element position
   top: '50%', // Top position relative to parent
   left: '50%' // Left position relative to parent
 };
@@ -269,6 +274,9 @@ target.appendChild(spinner.el);
     $('#opts input[min], #opts select').each(function() {
       $('#opt-' + this.name).text(opts[this.name] = parseFloat(this.value));
     });
+    $('#opts input[name="label"]').each(function() {
+      $('#opt-' + this.name).text(opts[this.name] = this.value.replace(/^['"]/, '').replace(/['"]$/, ''));
+    });
     $('#opts input:checkbox').each(function() {
       opts[this.name] = this.checked;
       $('#opt-' + this.name).text(this.checked);
@@ -288,7 +296,7 @@ target.appendChild(spinner.el);
         params[kv[0]] = kv[kv.length-1];
       });
     }
-    $('#opts input[min], #opts select').each(function() {
+    $('#opts input[min], #opts input[name="label"], #opts select').each(function() {
       var val = params[this.name];
       if (val !== undefined) this.value = val;
       this.onchange = update;
@@ -302,12 +310,6 @@ target.appendChild(spinner.el);
     });
     update();
   });
-</script>
-<script type="text/javascript">
-  var _gaq=[['_setAccount','UA-19036385-2'],['_trackPageview']];
-  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
-  g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-  s.parentNode.insertBefore(g,s)}(document,"script"));
 </script>
 </body>
 </html>
